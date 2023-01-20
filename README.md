@@ -148,4 +148,63 @@ While the app is analyzing, please look in the console to see if there are any e
 <br>
 
 
+## 4- Model Training and Validation
+
+<br>
+
+<br>
+
+## 5- Licenses
+
+All code that I have created is free to use under an MIT license.
+ 
+The dataset used to train the model is available under a Creative Commons Attribution 4.0 International Public License.<br>
+https://creativecommons.org/licenses/by/4.0/legalcode
+
+The Ultralytics Yolov5 model is licensed under a GNU General Public License.<br>
+https://github.com/ultralytics/yolov5/blob/master/LICENSE
+
+<br>
+
+## 6- Citations
+
+DAVID Etienne. (2021). Global Wheat Head Dataset 2021 (1.0) [Data set]. Zenodo.<br>
+https://doi.org/10.5281/zenodo.5092309
+
+<br>
+
+## 7- Acknowledgements
+
+Many thanks to Kaggle for the free GPU and other great resources they continue to provide.
+
+I also want to thank the GWHD team for the dataset that they’ve generously made publicly available.
+
+Many thanks to the team at Ultralytics for the Yolov5 model and pre-trained weights they’ve made freely available.
+
+<br>
+
+## 8- References and Resources
+
+Paper:<br>
+Global Wheat Head Dataset 2021: more diversity to improve the benchmarking of wheat head localization methods<br>
+https://arxiv.org/abs/2105.07660
+
+Dataset on Zenodo<br>
+https://zenodo.org/record/5092309#.Y7jTtuxBzUI
+
+Dataset on Kaggle<br>
+https://www.kaggle.com/datasets/vbookshelf/global-wheat-head-dataset-2021
+
+Ultralytics Yolov5<br>
+https://github.com/ultralytics/yolov5
+
+The Complete Python Course | Learn Python by Doing in 2022<br>
+Udemy<br>
+https://www.udemy.com/course/the-complete-python-course/
+
+Flask experiments<br>
+https://github.com/vbookshelf/Flask-Experiments
+
+W3.CSS Tutorial<br>
+https://www.w3schools.com/w3css/defaulT.asp
 
