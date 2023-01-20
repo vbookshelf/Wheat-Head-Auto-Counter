@@ -60,7 +60,7 @@ Place the mouse pointer on the area that you want to magnify then:
 
 ### First download the project folder from Kaggle
 
-I've stored the project folder (named mammogram-mass-analyzer-v0.0) in a Kaggle dataset.<br>
+I've stored the project folder (named wheat-head-auto-counter) in a Kaggle dataset.<br>
 
 
 I suggest that you download the project folder from Kaggle instead of from this GitHub repo. This is because the project folder on Kaggle includes the trained model. The project folder in this repo does not include the trained model because GitHub does not allow files larger than 25MB to be uploaded.<br>
