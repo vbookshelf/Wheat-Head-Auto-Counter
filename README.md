@@ -148,13 +148,28 @@ While the app is analyzing, please look in the console to see if there are any e
 <br>
 
 
-## 4- Model Training and Validation
+## 5- Model Training and Validation
+
+The model card contains a summary of the training and validation datasets as well as the validation results. There's also some info about the app. Please refer to this document:<br>
+
+
+All the project jupyter notebooks are stored in the folder called "Notebooks". There are three notebooks. 
+Each notebook was run either on Kaggle or on VAST.<br>
+
+
+Exp_05-Kaggle<br>
+The code to create 7 folds. Only fold 0 was used for training and validation.
+
+Exp_07-VAST<br>
+The code for training and validating the model.
+
+Exp_09-Kaggle<br>
+The code for reviewing the val preds made by the model created in exp07.
+
 
 <br>
 
-<br>
-
-## 5- Licenses
+## 6- Licenses
 
 All code that I have created is free to use under an MIT license.
  
@@ -166,14 +181,14 @@ https://github.com/ultralytics/yolov5/blob/master/LICENSE
 
 <br>
 
-## 6- Citations
+## 7- Citations
 
 DAVID Etienne. (2021). Global Wheat Head Dataset 2021 (1.0) [Data set]. Zenodo.<br>
 https://doi.org/10.5281/zenodo.5092309
 
 <br>
 
-## 7- Acknowledgements
+## 8- Acknowledgements
 
 Many thanks to Kaggle for the free GPU and other great resources they continue to provide.
 
@@ -183,7 +198,7 @@ Many thanks to the team at Ultralytics for the Yolov5 model and pre-trained weig
 
 <br>
 
-## 8- References and Resources
+## 9- References and Resources
 
 Paper:<br>
 Global Wheat Head Dataset 2021: more diversity to improve the benchmarking of wheat head localization methods<br>
