@@ -2,9 +2,7 @@
 [ Repo Under Construction ]
 
 <br>
-This is a free desktop wheat head counting tool that uses computer vision to detect and count wheat heads on images of wheat fields. The ouput image is interactive. Clicking on a dot converts it into a bounding box. This feature makes it easier for a person to analyze the output image, and adjust the count.
-
-This a flask app running on the desktop. Internally the app is powered by a Yolov5m model that was trained on data from the Global Wheat Head Dataset 2021.
+This is a free desktop wheat head counting tool that uses computer vision to detect and count wheat heads on images of wheat fields. The ouput image is interactive. Clicking on a dot converts it into a bounding box. This feature makes it easier for a person to analyze the output image, and adjust the count. This a flask app running on the desktop. Internally the app is powered by a Yolov5m model that was trained on data from the Global Wheat Head Dataset 2021.
 <br>
 
 <br>
