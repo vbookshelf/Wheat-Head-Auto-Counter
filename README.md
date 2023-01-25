@@ -170,7 +170,7 @@ Exp_09-Kaggle<br>
 The code for reviewing the val preds made by the model created in exp07. Demonstrates GPU nference using the Yolov5 detect.py workflow.
 
 Exp_11-Kaggle<br>
-The code for reviewing the val preds made by the model created in exp07. Demonstrtates cpu inference using the Torch Hub workflow. This is the inference method that's used in the app.
+The code for reviewing the val preds made by the model created in exp07. Demonstrates cpu inference using the Torch Hub workflow. This is the inference method that's used in the app.
 
 
 <br>
@@ -182,7 +182,7 @@ All code that I have created is free to use under an MIT license.
 The dataset used to train the model is available under a Creative Commons Attribution 4.0 International Public License.<br>
 https://creativecommons.org/licenses/by/4.0/legalcode
 
-The Ultralytics Yolov5 model is licensed under a GNU General Public License.<br>
+The Ultralytics Yolov5 model is licensed under a GPL-3.0 License.<br>
 https://github.com/ultralytics/yolov5/blob/master/LICENSE
 
 <br>
