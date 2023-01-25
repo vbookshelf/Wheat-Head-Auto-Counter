@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+<head>
+<meta charset="utf-8">
+<title>FAQ</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<!--CSS Stylesheets-->
+<link rel="stylesheet" href="/static/css/w3.css">
+<link rel="stylesheet" href="/static/css/woza.css">
+
+
+<!--Link to fonts from Google fonts-->
+<link href="https://fonts.googleapis.com/css?family=Oswald:300" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+
+<link rel="shortcut icon" type="image/png" href="/static/assets/w.jpg">
+
+</head>
+
+
+
+<body class="w3-pale-green">
+<!-- w3-content defines a container for fixed size centered content,
+and is wrapped around the whole page content. -->
+
+<div style="max-width:1500px">
+<!-- 1. HOME PAGE TAB -->
+<div class="w3-animate-opacity w3-padding w3-margin-bottom">
+	
+
+
+<!-- 960 width region -->
+<div class='w3-content w3-padding w3-white' style="max-width:960px">
+	
+	
+	
+<!-- Top Bar -->
+<div class='normal-bar w3-padding w3-round w3-text-black w3-opacity w3-small'>
+	
+
+	<p class="w3-padding-left no-margin space-letters w3-left-align unblock">
+	<a class="change-size" href="{{ url_for('home_func') }}"><b><-- Go Back</b></a>
+	</p>
+	
+	<p class="no-margin unblock space-letters w3-right">
+		
+		<a class="change-size" href="https://woza.work/"><b>Woza.Work</b></a> -
+		<a class="change-size" href="#contact"><b>Contact</b></a>
+		
+	</p>
+</div>
+	
+
+
+
+<div class="w3-text-purple w3-center w3-margin space-letters">
+
+	<h2>FAQ</h2>
+	
+</div>
+
+
+
+<div class='bottom-margin'>
+	
+	
+	<!-- Start of block -->
+	<div class='side-margin1 w3-round text-color space-letters 
+	w3-margin-bottom'>
+			
+			
+			<p class='w3-text-purple topp-margin'><b>1- What does this app do?</b></p>
+			<p>It automatically detects and counts wheat heads on wheat field images.</p>
+
+			<p class='w3-text-purple topp-margin'><b>2- How do I use it?</b></p>
+			<p>Click the button to submit images in png or jpg format.<br>
+				Your images will be auto analyzed on submission.<br>
+				A list of image names will appear.<br>
+				The number of detected wheat heads will also be displayed.<br>
+				Click an image name to see that image with the dots drawn in.<br>
+				Click on a dot to see the associated bounding box.</p>
+
+			<p>You should inspect the dots and their associated bounding boxes,
+				then adjust the count up or down to arrive at the final number of wheat heads.</p>
+
+			<p>You'll find a few sample wheat images in the folder
+				called sample_wheat_images. You can use them to try the app.</p>
+
+			<p class='w3-text-purple topp-margin'><b>3- How do I zoom in on the image?</b></p>
+			<p>To zoom in on the image please use the desktop zoom feature that’s
+				built into both Mac and Windows 10.<br>
+				Place the mouse pointer on the part of the image you want to magnify then:<br>
+				- on Mac move two fingers apart on the touchpad,<br>
+				- on Windows hold down the windows key and press the + key.</p>
+
+
+			<p class='w3-text-purple topp-margin'><b>4- How does this app work?</b></p>
+			<p>A Yolov5 computer vision model analyzes each image. The app places a dot on each detected wheat head.
+				Each dot is the center of a bounding box.
+				The app displays the total number of dots on each image.<br>
+				Please refer to the <a href="/about" class="w3-text-blue">Model Card</a> for more info.</p>
+
+			<p class='w3-text-purple topp-margin'><b>5- What image formats are supported?</b></p>
+			<p>The app accepts png or jpg images. Tiff images are not supported.</p>
+
+	</div>
+	<!-- End of block -->
+	
+</div>
+
+
+</div><!-- End of 960 width region -->
+
+
+</div><!--END OF HOME PAGE TAB-->
+</div> <!-- w3-content -->
+</body>
+</html>
+

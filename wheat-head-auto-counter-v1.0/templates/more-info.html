@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+<title>Model Card and App Info</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<!--CSS Stylesheets-->
+<link rel="stylesheet" href="/static/css/w3.css">
+<link rel="stylesheet" href="/static/css/woza.css">
+
+
+<!--Link to fonts from Google fonts-->
+<link href="https://fonts.googleapis.com/css?family=Oswald:300" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+
+<link rel="shortcut icon" type="image/png" href="/static/assets/w.jpg">
+
+</head>
+
+
+<body class="w3-pale-green">
+<!-- w3-content defines a container for fixed size centered content,
+and is wrapped around the whole page content. -->
+
+<div style="max-width:1500px">
+<!-- 1. HOME PAGE TAB -->
+<div class="w3-animate-opacity w3-padding w3-margin-bottom">
+	
+
+
+<!-- 960 width region -->
+<div class='w3-content w3-padding w3-white' style="max-width:960px">
+	
+	
+	
+<!-- Top Bar -->
+<div class='normal-bar w3-padding w3-round w3-text-black w3-opacity w3-small'>
+	
+
+	<p class="w3-padding-left no-margin space-letters w3-left-align unblock">
+	<a class="change-size" href="{{ url_for('home_func') }}"><b><-- Go Back</b></a>
+	</p>
+	
+	<p class="no-margin unblock space-letters w3-right">
+		
+		<a class="change-size" href="https://woza.work/"><b>Woza.Work</b></a> -
+		<a class="change-size" href="#contact"><b>Contact</b></a>
+		
+	</p>
+</div>
+	
+
+
+
+<div class="w3-text-purple w3-center w3-margin space-letters">
+
+	<h4>Model Card and App Info</h4>
+	
+</div>
+
+
+
+<div class='bottom-margin'>
+	
+	
+	<!-- Start of block -->
+	<div class='side-margin1 w3-round text-color space-letters 
+	w3-margin-bottom'>
+	
+			<p class='w3-text-purple topp-margin'><b>Model Revision Record</b></p>
+			
+			<div>
+				
+				<p>App name: Wheat Head Auto Counter<br>
+					Model name: exp7_best.pt
+				</p>
+				
+				<p>App deployment status: Prototype<br>
+					Version: 1.0<br>
+				Date: 24-Jan-2023<br>
+				Created by: vbookshelf<br>
+				Notes: Released for demonstration.</p>
+				
+			</div>
+			
+			<div>
+				
+				<p><b>Known Issues</b></p>
+				
+				<p>1- The model detects small portions of wheat heads that were cut off
+					at the edges of the image. You may not want these
+					cut off wheat heads included in the count.
+					Therefore, it’s important to review the predicted
+					images and adjust the wheat head count if needed.</p>
+
+				<p>2- When there’s an error the app freezes and the spinner just keeps turning.
+					This is by design. In this prototype I didn’t include error handling code.
+					All error messages are clearly displayed in the console.
+					This detailed information will help users to trace and fix errors.</p>
+				
+			</div>
+			
+			<hr>
+			
+			
+			<p class='w3-text-purple topp-margin'><b>Purpose</b></p>
+			
+			<p>Manually counting wheat heads is tedious.
+				This desktop app uses computer vision to automatically detect and count
+				wheat heads on images of wheat fields.</p>
+
+			<p>The app takes png or jpg images as input. It analyzes each image and then
+				displays that image with dots drawn on each detected wheat head.
+				The output image is interactive. Clicking on a dot converts it into a bounding box.
+				The app also displays the total number of dots on the image.</p>
+
+			<p>The predictions are made by a Yolov5m model.
+				The model was fine tuned on data from the Global Wheat Head Dataset 2021.</p>
+
+
+				
+			<p class='w3-text-purple topp-margin'><b>Data Security</b></p>
+			
+			<p>This is a desktop application.<br>
+				- Data never leaves the user’s pc or laptop.<br>
+				- There's no tracking.<br>
+				- The code is fully accessible and therefore auditable for malware.</p>
+		
+			
+			
+			<p class='w3-text-purple topp-margin'><b>Input</b></p>
+			
+			<p>The app accepts images in png or jpg format.
+				Multiple images can be submitted at the same time.
+				Tiff images are not supported.</p>
+			
+			
+			<p class='w3-text-purple topp-margin'><b>Output</b></p>
+			
+			<p>The app outputs images with dots drawn on each detected wheat head.
+				The output image is interactive. Clicking on a dot converts the dot into a bounding box.
+				The app also displays a count showing the total number of dots on each image.</p>
+			
+			
+			<p class='w3-text-purple topp-margin'><b>Global Wheat Head Dataset 2021 - Summary</b></p>
+
+			<div>
+				<ul>
+					<li>6,512 wheat images, size 1024x1024, png format</li>
+					<li>275,371 total wheat head bounding boxes</li>
+					<li>125 images without wheat heads</li>
+					<li>Images are labeled with one of 5 development stages:<br>
+						filling, filling-ripening, post-flowering, ripening and multiple</li>
+					<li>Images come from 22 locations in 12 countries</li>
+				</ul>
+			</div>
+
+		<div>
+			<p><a href="https://arxiv.org/abs/2105.07660" target='_blank' class="w3-text-blue">-> Paper</a><br>
+			Global Wheat Head Dataset 2021: more diversity to
+				improve the benchmarking of wheat head localization methods</p>
+
+			<p><a href="https://zenodo.org/record/5092309#.Y7jTtuxBzUI" target='_blank' class="w3-text-blue">-> Dataset on Zenodo</a></p>
+
+			<p><a href="https://www.kaggle.com/datasets/vbookshelf/global-wheat-head-dataset-2021" target='_blank' class="w3-text-blue">-> Dataset on Kaggle</a></p>
+
+		</div>
+
+
+
+			<p class='w3-text-purple topp-margin'><b>Creating the train and val datasets</b></p>
+
+			<div>
+				<p>To create the training and validation datasets I first combined the train,
+					val and test sets that come with the GWHD dataset.
+					I removed a few duplicate images.</p>
+
+				<p>A domain is a combination of the region in the world where the
+					images come from and the wheat development stage.
+					I created 7 folds stratified by the “domain” column.
+					By stratifying by “domain” the data also gets stratified by “development stage”.</p>
+
+				<p>I made sure that each fold contained images that did not have any wheat heads.</p>
+
+				<p>Total train images: 5,581 (236,204 total wheat heads)<br>
+				Total val images: 931 (39,167 total wheat heads)</p>
+
+			</div>
+
+
+		<p class='w3-text-purple topp-margin'><b>Validation Results</b></p>
+
+			<div>
+
+				<p>These were the validation results after fine tuning a Yolov5m model for 100 epochs.
+					The model was trained on one fold only. The image size parameter was set to 512.</p>
+
+				<div>
+
+					<img class="w3-round" src="/static/assets/exp07-yolo-results.png"  width="100%" alt="Results">
+
+				</div>
+
+			</div>
+
+
+			
+			<p class='w3-text-purple topp-margin'><b>How accurate were the wheat head counts?</b></p>
+
+			<div>
+				<p>I compared the actual count for each val image against the predicted count.
+				This approach is intuitive and it provides quick insight into the model’s
+					performance. But this validation strategy is not ideal because
+					there could be instances where there are false positives but the
+					count could still be correct.
+				</p>
+
+				<p>By development stage:<br>
+				The count error was fairly constant across development stages.</p>
+			
+				<div>
+					<img class="w3-round" src="/static/assets/exp11-by-dev-stage.png"  width="40%" alt="Results by dev stage">
+				</div>
+
+				<p>By domain:<br>
+				The count error varied by domain. There are 47 domains. 32 domains had count errors
+					less than 10 percent. 41 domains had count errors less than 20%.
+					The table below shows the average count error for each domain.</p>
+
+				<div>
+					<img class="w3-round" src="/static/assets/exp11-by-domain.png"  width="100%" alt="Results by domain">
+				</div>
+			</div>
+
+
+
+			<p class='w3-text-purple topp-margin'><b>Hardware</b></p>
+
+			<div>
+				<p>- 1 x RTX A5000 GPU with 128 cpu’s <br>
+					- Trained on vast.ai</p>
+			</div>
+			
+			
+			<p class='w3-text-purple topp-margin'><b>Misc Info</b></p>
+
+			<div>
+			
+				<p>1- In many cases the model detected wheat heads that were cut off
+					at the edges of images. The creators of the dataset intentionally did
+					not provide bounding boxes for many of these cut off wheat heads.
+					These detections show up as errors, but in reality they are not errors.</p>
+
+				<p>2- Having a human in the loop would be the best way to use this app.
+					For each prediction, a person should inspect the dots and their
+					associated bounding boxes, then adjust the count up or down to
+					arrive at the final number of wheat heads.</p>
+
+				<p>3- I used data augmentation to improve accuracy and reduce overfitting.</p>
+
+				<p>4- The app can run on a CPU or GPU. The device is selected automatically.
+					CPU inference time is about one second per image.
+					A GPU would make the app faster, but it’s not essential.</p>
+
+				<p>5- The app does not need an internet connection to run.
+					However, an internet connection is needed during the initial setup.</p>
+				
+			</div>
+
+
+			<p class='w3-text-purple topp-margin'><b>Documentation</b></p>
+			
+				<p>All code is available on <a href="https://github.com/vbookshelf/Wheat-Head-Auto-Counter" target='_blank' class="w3-text-blue">GitHub.</a>
+				This includes the Jupyter notebooks that were used to train and validate the model.</p>
+
+
+
+			<p id='contact' class='w3-text-purple topp-margin'><b>License</b></p>
+
+				<p>The app design code is available under an MIT License.</p>
+
+				<p>The dataset used to train the model is available under a
+					Creative Commons Attribution 4.0 International Public License.</p>
+
+
+
+			<p id='contact' class='w3-text-purple topp-margin'><b>Contact</b></p>
+			
+				<p>Email: contact -at- woza -dot- work<br>
+
+
+	</div>
+	<!-- End of block -->
+	
+</div>
+
+
+</div><!-- End of 960 width region -->
+
+
+</div><!--END OF HOME PAGE TAB-->
+</div> <!-- w3-content -->
+</body>
+</html>
+

@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+<title>Wheat Head Auto Counter</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="A free desktop Ai tool that automatically detects and counts wheat heads on wheat field images.">
+
+
+<!--CSS Stylesheets-->
+<link rel="stylesheet" href="/static/css/w3.css">
+<link rel="stylesheet" href="/static/css/mammo.css">
+
+
+<!--Link to fonts from Google fonts-->
+<link href="https://fonts.googleapis.com/css?family=Oswald:300" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+
+
+<link rel="shortcut icon" type="image/png" href="/static/assets/w.jpg">
+
+<!-- This code will pre-load the sample images so the user can click
+through them smoothly, i.e. there'll be no jittering when the user
+clicks on the links to display the sample images.-->
+	<link rel="preload" href="static/sample_images/dot-image889.png" as="image">
+<link rel="preload" href="static/sample_images/dot-image7.png" as="image">
+<link rel="preload" href="static/sample_images/dot-image888.png" as="image">
+
+
+<style>
+html,body,h2,h3,h4,p,h5,li {font-family: Roboto, "Helvetica", "Arial", sans-serif}
+</style>
+
+
+<style>
+
+/* Spinner
+https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_loader
+*/
+
+.loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 70px;
+  height: 70px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+</style>
+
+</head>
+
+
+
+
+<body class="w3-pale-green"> <!-- body-->
+<!-- w3-content defines a container for fixed size centered content,
+and is wrapped around the whole page content. -->
+<div class="w3-content" style="max-width:1500px"> <!-- w3-content -->
+
+<!-- 1. HOME PAGE -->
+<div class="w3-animate-opacity"> <!-- home page -->
+	
+
+
+<!-- 1200 width can be set.
+But here the max width is set to 100% so it the user's screen width can be used.-->
+<div class='w3-content w3-round w3-center w3-margin-top' style="max-width:100%"><!-- 1200 width region -->
+
+
+
+	<div class="w3-padding-bottom w3-center unblock"> <!-- region 1 -->
+
+			<div class="w3-margin-right w3-margin-left" id="ajaxResponse">
+				<img id="selected-image" class="w3-round unblock" src="/static/assets/dot-image889.png"
+					 height="580" alt="Image for analysis">
+			</div>
+
+
+		<!-- DON'T DELETE THIS
+		This div is used in the ajax code that handles the file uploads.
+		Loading images like this into a hidden element is like pre-loading them.
+		 In this way the images load instantly when the user clicks
+		 on a link to display them.-->
+		<div class="hide" id="load-images-hidden">
+			<!--
+			<img class="w3-round unblock" src="/static/png-images/2ddfad7286c2b016931ceccd1e2c7bbc.png"  height="550">
+
+			The uploaded images are placed into image tags and loaded into this hidden div element.
+			Refer to the ajax code that handles image uploading.
+			-->
+		</div>
+
+		<!--
+		What is this uploading code doing?
+
+		1- When the user clicks the button a click is simulated on the file input (id="image-selector").
+		This allows the user to select the files to upload.
+		2- When the user has selected the files it triggers an onchange event, this simulates a click
+		on the button with id: id="upload-file-btn". This causes the files to be submitted.
+
+		-->
+		<!-- Button -->
+		<div id="btnn" class="w3-center w3-margin-top">
+			<button class="w3-btn w3-purple w3-hover-blue w3-round w3-margin-bottom adjust-spacing btn-font w3-padding w3-space-letters w3-text-white" onclick="setTimeout(simulateClick.bind(null, 'image-selector'), 200)">
+				Submit Wheat Image/s</button>
+		</div>
+
+		<form id="upload-file" method="post" enctype="multipart/form-data">
+				<div class="hide">
+					<input id="image-selector" name="my_files" type="file" multiple>
+
+					<button id="upload-file-btn" type="button">Upload</button>
+				</div>
+		</form>
+
+	</div><!-- Region 1 -->
+
+
+
+
+	<!-- Results Box -->
+	<div class="w3-center w3-round text-color space-letters dont-break-out unblock set-alignment results-box w3-purple bottom-margin"><!-- Results Box -->
+
+		<!-- Bar-->
+		<div class="">
+			<div class="w3-container w3-green" style="height:5px;width:100%"></div>
+		</div>
+
+		<p class="w3-text-white results-text">Wheat Head Auto Counter<br>
+			<small>A desktop tool for auto counting wheat heads</small></p>
+
+
+
+		<div class="w3-text-purple space-letters message-text w3-padding w3-border w3-white w3-left-align make-scrollable">
+
+			<div class="w3-padding w3-white w3-margin" id="pred_message_text">
+
+				<h5>Analysis in progress...</h5>
+				<p>When using a CPU this takes about 4 sec for setup, then about 1 sec per image.</p>
+
+				<div class="loader"></div>
+
+				<p>Please look at the console to see the status.</p>
+
+			</div>
+
+
+			<div id="file-names">
+
+				<div>
+					<p>Sample Results<br>
+					- Click a file name.<br>
+						- The dots on these samples are not interactive.</p>
+
+					<!-- These are the sample clickable images that appear when the page loads.
+					 Note that these images have been pre-loaded. Refer to the link tags in the head section.-->
+					<ul>
+
+						<li class="row w3-padding-bottom w3-text-black w3-border-right w3-border-black" onclick="ajaxSampleGetFilename(this.innerHTML)"><a href="#"><b>20 wheat heads</b><br>dot-image889.png</a></li>
+
+						<li class="row w3-padding-bottom" onclick="ajaxSampleGetFilename(this.innerHTML)"><a href="#"><b>14 wheat heads</b><br>dot-image7.png</a></li>
+						<li class="row w3-padding-bottom" onclick="ajaxSampleGetFilename(this.innerHTML)"><a href="#"><b>12 wheat heads</b><br>dot-image888.png</a></li>
+
+					</ul>
+				</div>
+
+				<hr>
+
+				<div>
+					<p>-> <a href="/about" class="w3-text-purple">Model Card and App Info</a></p>
+					<p>-> <a href="/faq" class="w3-text-purple">FAQ</a></p>
+				</div>
+
+			</div>
+
+		</div>
+
+
+
+	</div> <!-- Results Box -->
+
+</div><!-- End of 960 width region -->
+
+
+</div><!-- home page -->
+
+
+
+<!-- Hosting JQuery locally because this desktop app
+ must be able to run offline. -->
+<script src="/static/jquery/jquery-3.6.1.min.js">
+</script>
+
+
+<script>
+
+	// This is the ajax code that handles the file uploads.
+	// The response that it gets back from flask is a list.
+	// Each list item is html code that gets inserted into
+	// different parts of the page.
+
+    $(function() {
+    $('#upload-file-btn').click(function() {
+
+        var form_data = new FormData($('#upload-file')[0]);
+
+		// It could happen that the user clicks the button to
+		// upload files, but then clicks cancel. The prediction code could still
+		// activate because the code activates onchange.
+		// This if statement solves that problem. There is an id called image-selector
+		// in the file <input>. This if statement checks the length.
+		// Ref: https://stackoverflow.com/questions/40364692/check-if-formdata-is-empty
+
+        if(document.getElementById("image-selector").files.length != 0) {
+
+				// Clear the previous text
+				$("#file-names").text("");
+
+				// Show the pred message text
+				$("#pred_message_text").show();
+
+				console.log(form_data);
+
+				$.ajax({
+					type: 'POST',
+					url: '/upload_ajax',
+					data: form_data,
+					contentType: false,
+					cache: false,
+					processData: false,
+					success: function(result){
+
+						// Hide the pred message text
+						$('#pred_message_text').hide();
+						$('#faq-text').hide();
+
+						$("#ajaxResponse").html(result.main_image_str);
+
+						// Here we loading the images inside a hidden div element.
+						// This is like pre-loading the images so they are available
+						// immediately when the user clicks a link. The image display process is smooth.
+						$("#load-images-hidden").html(result.image_fin_str);
+
+						$("#file-names").html(result.html_str);
+
+						},
+				});
+
+		} else {
+		  //  No images have been selected.
+		  console.log("No files selected");
+		}
+
+    });
+	});
+
+</script>
+
+
+<script>
+
+	// This functions clicks an element with a given id.
+
+	function simulateClick(tabID) {
+		document.getElementById(tabID).click();
+	}
+
+
+
+	// This is an onchange function.
+	// It detects when the user has selected the files to upload.
+	// It then clicks the upload button.
+
+	$("#image-selector").change(function() {
+
+		// Simate a click on the button with id=upload-file-btn
+		simulateClick("upload-file-btn");
+	 });
+
+
+
+
+	// How to highlight selected <li> item only?
+	//https://stackoverflow.com/questions/52973660/how-to-highlight-selected-li-item-only
+
+	jQuery(document).ready(function(){
+		jQuery('li').click(function(event){
+			//remove all pre-existing active classes
+			jQuery('.row').removeClass('w3-text-black w3-border-right w3-border-black');
+
+			//add the active class to the link we clicked
+			jQuery(this).addClass('w3-text-black w3-border-right w3-border-black');
+			event.preventDefault();
+		});
+	});
+
+
+
+	// After uploading, when the user clicks a file name this is the
+	// code that gets activated.
+	// This is the ajax code for replacing the main image on the page
+	// with the image from a dicom file that the user has uploaded.
+	// It sends the files to the flask endpoint called process_ajax.
+
+	function ajaxGetFilename(fname) {
+		$.ajax({
+				type: "POST",
+				url: "{{ url_for('process_ajax') }}",
+				data: {'file_name': fname},
+				success: function(result){
+					console.log(result.output1);
+							$("#ajaxResponse").html(result.output1);
+						  }
+		})
+	}
+
+
+
+
+
+	// When the user clicks a sample file name this is the
+	// code that gets activated.
+	function ajaxSampleGetFilename(fname) {
+
+		$.ajax({
+				type: "POST",
+				url: "{{ url_for('process_sample_ajax') }}",
+				data: {'file_name': fname},
+				success: function(result){
+					console.log(result.output1);
+							$("#ajaxResponse").html(result.output1);
+						  }
+		})
+	}
+
+</script>
+
+
+<script>
+
+	// When the page loads fo the first time:
+	$('#pred_message_text').hide();
+	$('.active-button').hide();
+
+</script>
+
+	<script>
+
+	// This is the code that converts the dot
+	// into a bounding box.
+	// When the user clicks on a dot, this code is triggered.
+	// The fname is extracted from the html src attribute during the onclick event.
+
+
+	function get_click_coords(event, fname) {
+
+		// Code source: Techlearners By Neeraj Saxena
+		// https://www.youtube.com/watch?v=Ybb-JFjf7m8
+
+		console.log(fname);
+
+		// The origin (0, 0) for the coordinates is in the top left
+		// corner of the image.
+
+		// Get the x coordinate
+		pos_x = event.offsetX ? (event.offsetX) : event.pageX - document.getElementById("selected-image").offsetLeft;
+
+		// Get the y coordinate
+		pos_y = event.offsetY ? (event.offsetY) : event.pageY - document.getElementById("selected-image").offsetTop;
+
+		// Get the client side height and width of the displayed image.
+		// This refers to the resized image that's displayed on the page.
+		// Note: The coords we get when we click on the image
+		// are relative to this client side image size.
+		image_display_h = document.getElementById("selected-image").clientHeight;
+		image_display_w = document.getElementById("selected-image").clientWidth;
+
+		// Get the actual height and width of the image.
+		// This is the actual size of the image that was submitted by the user.
+		image_h = document.getElementById("selected-image").naturalHeight;
+		image_w = document.getElementById("selected-image").naturalWidth;
+
+		console.log(image_display_h);
+		console.log(image_display_w);
+
+		//alert(pos_x + " " + pos_y);
+
+		// Send the info to the app.py file and get the response.
+		// The endpoint to which we send the info is named: process_info
+		$.ajax({
+				type: "POST",
+				url: "{{ url_for('process_click_info') }}",
+				data: {'pos_x': pos_x, 'pos_y': pos_y, 'image_display_h': image_display_h, 'image_display_w': image_display_w, 'fname': fname},
+				success: function(result){
+
+							// If the user did not click on a dot then
+							// we don't change the image.
+							// The current image will remain as is.
+							if (result.new_image_str != 'None') {
+
+								// Display the response on the page
+								$("#ajaxResponse").html(result.new_image_str);
+
+							}
+
+				}
+		})
+	}
+</script>
+
+
+
+
+</div> <!-- w3-content -->
+</body> <!-- body -->
+</html>
+
