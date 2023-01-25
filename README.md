@@ -2,7 +2,10 @@
 [ Repo Under Construction ]
 
 <br>
-This is a free desktop wheat head counting tool that uses computer vision to detect and count wheat heads on images of wheat fields. The ouput image is interactive. Clicking on a dot converts it into a bounding box. This feature makes it easier for a person to review the output image. This a flask app running on the desktop. Internally the app is powered by a Yolov5m model that was trained on data from the Global Wheat Head Dataset 2021.
+
+Wheat head density is the number of wheat heads per unit ground area. It's an important measure that researchers use to determine wheat yield. To get this value researchers have to count the number of wheat heads on wheat field images. Manually counting wheat heads is tedious. This desktop app uses computer vision to automatically detect and count wheat heads on images of wheat fields.
+
+The app ouputs an interactive image. Clicking on a dot converts it into a bounding box. This feature plus image zoom makes it easier for a person to review the output image. This a flask app running on the desktop. Internally the app is powered by a Yolov5m model that was trained on data from the Global Wheat Head Dataset 2021.
 <br>
 
 <br>
