@@ -14,7 +14,7 @@ The app ouputs an interactive image. Clicking on a dot converts it into a boundi
 <br>
 
 The model has a map@0.5 of 0.93.
-The validation count error varied by domain. A domain is a combination of the place where the wheat photos were taken and the wheat development stage. There are 47 domains in the dataset.  32 domains had count errors less than 10 percent. 42 domains had count errors less than 20 percent.
+The validation count error varied by domain. A domain is a combination of the place where the wheat photos were taken and the wheat development stage. There are 47 domains in the dataset.  32 domains had count errors less than 10 percent. 41 domains had count errors less than 20 percent.
 
 Having a human in the loop would be the best way to use this app. For each prediction, a person should look at the dots and their associated bounding boxes, then adjust the count up or down to arrive at the final number of wheat heads.
 
@@ -44,7 +44,6 @@ Having a human in the loop would be the best way to use this app. For each predi
 ## 2- Cons
 
 - It’s not a one click setup. The user needs to have a basic knowledge of how to use the command line to set up a virtual environment, download requirements and launch a python app.
-- The inference time is about 5 seconds per image, because inference is being done on the CPU.
 - The model’s ability to generalize is unproven. The dataset includes images from 22 locations around the world. I’m uncertain of how this model will perform on images from locations that are not represented in the Global Wheat Head Dataset.
 
 <br>
