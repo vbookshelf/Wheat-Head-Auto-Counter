@@ -73,7 +73,7 @@ wheat-head-auto-counter/yolov5/TRAINED_MODEL_FOLDER/
 
 ### System Requirements
 
-You'll need about 1.3GB of free disk space. Other than that there are no special system requirements. The app will run on a CPU. I have an old 2014 Macbook Pro laptop with 8GB of RAM. This app runs on it without any issues.
+You'll need about 1.3GB of free disk space. Other than that there are no special system requirements. This app will run on a CPU. I have an old 2014 Macbook Pro laptop with 8GB of RAM. This app runs on it without any issues.
 
 
 <br>
